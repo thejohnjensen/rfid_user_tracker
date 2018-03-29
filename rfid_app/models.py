@@ -16,3 +16,11 @@ class Student(db.Model):
     def __repr__(self):
         """Name of object."""
         return '<Student {} {}>'.format(self.first_name, self.last_name)
+
+
+class Bus(db.Model):
+    """Model for buses."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer)
+

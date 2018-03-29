@@ -37,6 +37,17 @@ class Route(db.Model):
 
     def __repr__(self):
         """Name of Route Object."""
-        return '<Route {}'.format(self.name)
+        return '<Route {}>'.format(self.name)
 
- 
+
+class TripHistory(db.Model):
+    """Model containing trip history and where student exited the bus."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(
+        db.Integer,
+        db.ForeignKey('student.id'),
+        nullable=False)
+    trip_start = db.Column(db.DateTime)
+    trip_end = db.Column(db.DateTime)
+    bus_stop = db.Column(db.Text())

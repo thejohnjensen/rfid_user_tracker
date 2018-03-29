@@ -1,5 +1,5 @@
 """Create database models."""
-from app import db
+from rfid_app import db
 from datetime import datetime
 
 

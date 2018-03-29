@@ -14,7 +14,7 @@ class Student(db.Model):
     present = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
-        """Name of object."""
+        """Name of Student Object."""
         return '<Student {} {}>'.format(self.first_name, self.last_name)
 
 
@@ -24,3 +24,19 @@ class Bus(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
 
+    def __repr__(self):
+        """Name of Bus Object."""
+        return '<Bus {}>'.format(self.number)
+
+
+class Route(db.Model):
+    """Model for Route."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text())
+
+    def __repr__(self):
+        """Name of Route Object."""
+        return '<Route {}'.format(self.name)
+
+ 

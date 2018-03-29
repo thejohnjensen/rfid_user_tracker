@@ -9,9 +9,15 @@ class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.Text())
     last_name = db.Column(db.Text())
-    home_stop = db.Column(db.Text())
+    home_stop = db.Column(
+        db.Text(),
+        db.ForeignKey('busstop.id'))
     school_stop = db.Column(db.Text())
     present = db.Column(db.Boolean(), default=False)
+    ride = db.relationship(
+        'TripHistory',
+        backref='passenger',
+        lazy=True)
 
     def __repr__(self):
         """Name of Student Object."""
@@ -48,6 +54,16 @@ class TripHistory(db.Model):
         db.Integer,
         db.ForeignKey('student.id'),
         nullable=False)
-    trip_start = db.Column(db.DateTime)
+    trip_start = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow)
     trip_end = db.Column(db.DateTime)
     bus_stop = db.Column(db.Text())
+
+
+class BusStop(db.Model):
+    """Model for all bus stops."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text())

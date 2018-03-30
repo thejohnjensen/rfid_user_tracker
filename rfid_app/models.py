@@ -3,20 +3,38 @@ from rfid_app import db
 from datetime import datetime
 
 
+bus_stops_and_routes = db.Table('bus_stop-route',
+                                db.Column('stop_id',
+                                          db.Integer,
+                                          db.ForeignKey('bus_stops.id')),
+                                db.Column('route_id',
+                                          db.Integer,
+                                          db.ForeignKey('routes.id')))
+
+
+bus_and_routes = db.Table('bus-route',
+                          db.Column('route_id',
+                                    db.Integer,
+                                    db.ForeignKey('routes.id')),
+                          db.Column('bus_id',
+                                    db.Integer,
+                                    db.ForeignKey('buses.id')))
+
+
 class Student(db.Model):
     """Create model for students."""
+
+    __tablename__ = 'students'
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.Text())
     last_name = db.Column(db.Text())
-    home_stop = db.Column(
-        db.Text(),
-        db.ForeignKey('busstop.id'))
+    home_stop_id = db.Column(db.Integer, db.ForeignKey('bus_stops.id'))
     school_stop = db.Column(db.Text())
     present = db.Column(db.Boolean(), default=False)
     ride = db.relationship(
-        'TripHistory',
-        backref='passenger',
+        'trip_history',
+        backref='student',
         lazy=True)
 
     def __repr__(self):
@@ -26,6 +44,8 @@ class Student(db.Model):
 
 class Bus(db.Model):
     """Model for buses."""
+
+    __tablename__ = 'buses'
 
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer)
@@ -38,6 +58,8 @@ class Bus(db.Model):
 class Route(db.Model):
     """Model for Route."""
 
+    __tablename__ = 'routes'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
 
@@ -49,10 +71,12 @@ class Route(db.Model):
 class TripHistory(db.Model):
     """Model containing trip history and where student exited the bus."""
 
+    __tablename__ = 'trip_history'
+
     id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(
         db.Integer,
-        db.ForeignKey('student.id'),
+        db.ForeignKey('students.id'),
         nullable=False)
     trip_start = db.Column(
         db.DateTime,
@@ -64,6 +88,8 @@ class TripHistory(db.Model):
 
 class BusStop(db.Model):
     """Model for all bus stops."""
+
+    __tablename__ = 'bus_stops'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())

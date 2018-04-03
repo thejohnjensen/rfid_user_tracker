@@ -83,7 +83,9 @@ class TripHistory(db.Model):
         nullable=False,
         default=datetime.utcnow)
     trip_end = db.Column(db.DateTime)
-    bus_stop = db.Column(db.Text())
+    bus_stop = db.Column(
+        db.Integer,
+        db.ForeignKey('bus_stops.id'))
 
 
 class BusStop(db.Model):

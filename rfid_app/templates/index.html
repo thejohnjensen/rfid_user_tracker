@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="{{ url_for('bus_stops',) }}"" method="post">
+    <select name="bus_number">
+        <option selected disabled>Bus Number:</option>
+        {% for bus in buses %}
+        <option name="{{ bus.id }}" value="{{ bus.number }}">Bus: {{ bus.number }}</option>
+        {% endfor %}
+    </select>
+
+    {# <select name="but_stops">
+        <option selected disabled>Bus Stop:</option>
+        {% for stop in stops %}
+        <option>{{ stop.name }}</option>
+        {% endfor %}
+    </select> #}
+    <input type="submit" value="Submit">
+</form>
+
+<form>
+    {{form.hidden_tag()}}
+    
+    {{form.bus_number}}
+
+</form>
+
+<ul>
+
+</ul>
+
+{{ data|safe }}
+
+{% endblock %} 

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{{ url_for('bus_stops',) }}"" method="post">
+<form id="select-bus" action="{{ url_for('index') }}"" method="post">
     <select name="bus_number">
         <option selected disabled>Bus Number:</option>
         {% for bus in buses %}
@@ -19,12 +19,6 @@
     <input type="submit" value="Submit">
 </form>
 
-<form>
-    {{form.hidden_tag()}}
-    
-    {{form.bus_number}}
-
-</form>
 
 <ul>
 

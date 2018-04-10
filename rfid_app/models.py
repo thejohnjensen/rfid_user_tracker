@@ -97,4 +97,5 @@ class BusStop(db.Model):
     name = db.Column(db.Text())
 
     def __repr__(self):
+        """Name of bus stop."""
         return '<BusStop {}>'.format(self.name)

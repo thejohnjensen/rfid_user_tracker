@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>{{ bus }}</h1>
+<h1>Bus: {{ bus }}</h1>
 
 <form id="select-stop" action="{{ url_for('index') }}"" method="post">
     <select name="but_stops">
         <option selected disabled>Bus Stop:</option>
         {% for stop in stops %}
-        <option>{{ stop.name }}</option>
+        <option>{{ stop }}</option>
         {% endfor %}
     </select>
     <input type="submit" value="Submit">

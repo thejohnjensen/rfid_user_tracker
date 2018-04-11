@@ -37,6 +37,10 @@ class Student(db.Model):
     #     backref='student',
     #     lazy=True)
 
+    def update_trip(self):
+        """."""
+        pass
+
     def __repr__(self):
         """Name of Student Object."""
         return '<Student {} {}>'.format(self.first_name, self.last_name)

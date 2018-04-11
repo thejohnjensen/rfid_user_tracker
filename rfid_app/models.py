@@ -32,10 +32,6 @@ class Student(db.Model):
     home_stop_id = db.Column(db.Integer, db.ForeignKey('bus_stops.id'))
     school_stop = db.Column(db.Text())
     present = db.Column(db.Boolean(), default=False)
-    # ride = db.relationship(
-    #     'trip_history',
-    #     backref='student',
-    #     lazy=True)
 
     def update_trip(self):
         """."""

@@ -94,7 +94,7 @@ class BusStop(db.Model):
     __tablename__ = 'bus_stops'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text())
+    name = db.Column(db.Text(), index=True, unique=True)
 
     def __repr__(self):
         """Name of bus stop."""

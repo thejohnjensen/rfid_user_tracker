@@ -4,8 +4,8 @@
 
 <h1>Bus: {{ bus }}</h1>
 
-<form id="select-stop" action="{{ url_for('index') }}"" method="post">
-    <select name="but_stops">
+<form id="select-stop" action="{{ url_for('bus_stops', number=bus)  }}"" method="post">
+    <select name="bus_stop">
         <option selected disabled>Bus Stop:</option>
         {% for stop in stops %}
         <option>{{ stop }}</option>
@@ -13,8 +13,6 @@
     </select>
     <input type="submit" value="Submit">
 </form>
-
-
 
 {{ data|safe }}
 

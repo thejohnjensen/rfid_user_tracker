@@ -1,6 +1,7 @@
 """Create database models."""
 from rfid_app import db
 from datetime import datetime
+from flask_login import UserMixin
 
 
 bus_stops_and_routes = db.Table('bus_stop_route',
@@ -19,6 +20,15 @@ bus_and_routes = db.Table('bus_route',
                           db.Column('bus_id',
                                     db.Integer,
                                     db.ForeignKey('buses.id')))
+
+
+class User(UserMixin, db.Model):
+    """."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
 
 
 class Student(db.Model):

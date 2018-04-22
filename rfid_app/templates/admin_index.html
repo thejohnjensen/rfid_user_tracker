@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form id="select-bus" action="{{ url_for('index') }}"" method="post">
+    <select name="bus_number">
+        <option selected disabled>Bus Number:</option>
+        {% for bus in buses %}
+        <option name="{{ bus.id }}" value="{{ bus.number }}">Bus: {{ bus.number }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+
+<ul>
+
+</ul>
+
+{{ data|safe }}
+
+{% endblock %} 
